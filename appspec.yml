@@ -3,6 +3,14 @@ os: linux
 files:
   - source: /
     destination: /var/www/brizy-ssl-helper
+permissions:
+  - object: /var/www/brizy-ssl-helper
+    pattern: "**"
+    owner: www-data
+    group: www-data
+    mode: 0755
+    type:
+      - file
 hooks:
   AfterInstall:
     - location: getssl.sh
