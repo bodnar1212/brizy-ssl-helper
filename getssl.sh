@@ -16,7 +16,7 @@ else
     sudo aws s3 cp s3://brizy-cloud-ssl/hosts /etc/nginx/sites-available/ --recursive
     sudo aws s3 cp s3://brizy-cloud-ssl/certificates /etc/nginx/ssl/ --recursive
 
-    sudo ln -sf /etc/nginx/sites-available/* /etc/nginx/sites-enabled/
+    for f in /etc/nginx/sites-available/*; do sudo ln -sf "$f" /etc/nginx/sites-enabled/; done
 
     echo 'Done all';
 fi
