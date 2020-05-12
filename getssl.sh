@@ -18,7 +18,7 @@ else
 
     for f in /etc/nginx/sites-available/*; do sudo ln -sf "$f" /etc/nginx/sites-enabled/; done
 
-    sudo service nginx reload
-    
     echo 'Done all';
 fi
+
+sudo service nginx reload
