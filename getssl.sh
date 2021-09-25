@@ -21,14 +21,14 @@ then
 
     echo "Done $DOMAIN";
 else
-    sudo service nginx stop
+    sudo service nginx start
 
     sudo aws s3 cp s3://brizy-cloud-ssl/hosts /etc/nginx/sites-available/ --recursive
     sudo aws s3 cp s3://brizy-cloud-ssl/certificates /etc/nginx/ssl/ --recursive
 
     for f in /etc/nginx/sites-available/*; do sudo ln -sf "$f" /etc/nginx/sites-enabled/; done
 
-    sudo service nginx start
+    sudo service nginx reload
 
     echo 'Done all';
 fi
