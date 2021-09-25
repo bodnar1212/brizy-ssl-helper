@@ -12,8 +12,8 @@ fi
 
 if [ "$DOMAIN" != "" ]
 then
-    sudo aws s3 cp s3://brizy-cloud-ssl/hosts/$DOMAIN /etc/nginx/sites-available/
     sudo aws s3 cp s3://brizy-cloud-ssl/certificates/$DOMAIN_CRT /etc/nginx/ssl/$DOMAIN_CRT/ --recursive
+    sudo aws s3 cp s3://brizy-cloud-ssl/hosts/$DOMAIN /etc/nginx/sites-available/
 
     sudo ln -sf /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
 
@@ -21,10 +21,8 @@ then
 
     echo "Done $DOMAIN";
 else
-    sudo service nginx start
-
-    sudo aws s3 cp s3://brizy-cloud-ssl/hosts /etc/nginx/sites-available/ --recursive
     sudo aws s3 cp s3://brizy-cloud-ssl/certificates /etc/nginx/ssl/ --recursive
+    sudo aws s3 cp s3://brizy-cloud-ssl/hosts /etc/nginx/sites-available/ --recursive
 
     for f in /etc/nginx/sites-available/*; do sudo ln -sf "$f" /etc/nginx/sites-enabled/; done
 
